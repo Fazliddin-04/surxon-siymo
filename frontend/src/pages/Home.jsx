@@ -1,8 +1,14 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
-import { FaQuestionCircle, FaTicketAlt, FaRegCalendarAlt } from 'react-icons/fa'
+import { useState, useEffect } from 'react'
+import { FaRegCalendarAlt } from 'react-icons/fa'
+import { useSelector, useDispatch } from 'react-redux'
+import Spinner from '../components/Spinner'
+import { getTickets, reset } from '../features/ticket/ticketSlice'
 
 function Home() {
+  const { tickets, isLoading, isSuccess } = useSelector(
+    (state) => state.tickets
+  )
+
   const [date, setDate] = useState(
     new Date().toLocaleString('en-US', {
       weekday: 'long',
@@ -10,6 +16,31 @@ function Home() {
       month: 'long',
     })
   )
+  const [totalCostIncurred, setTotalCostIncurred] = useState(0)
+  const [salePrice, setSalePrice] = useState(0)
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    return () => {
+      if (isSuccess) {
+        dispatch(reset())
+      }
+    }
+  }, [dispatch, isSuccess])
+
+  useEffect(() => {
+    dispatch(getTickets())
+  }, [dispatch])
+
+  useEffect(() => {
+    let costIncurred = 0
+    tickets.forEach((ticket) => {
+      costIncurred += ticket.price
+    })
+
+    setTotalCostIncurred(costIncurred)
+  }, [tickets])
 
   const onMutate = (e) => {
     setDate(
@@ -19,6 +50,10 @@ function Home() {
         month: 'long',
       })
     )
+  }
+
+  if (isLoading) {
+    return <Spinner />
   }
 
   return (
@@ -49,11 +84,11 @@ function Home() {
         <div className="flexbox">
           <div className="leftBordered">
             <small>Total cost</small>
-            <p>3 680 000 $</p>
+            <p>{totalCostIncurred.toLocaleString('uz-UZ')} UZS</p>
           </div>
           <div className="leftBordered">
             <small>Total selling price</small>
-            <p>18 680 465 $</p>
+            <p> {salePrice.toLocaleString('uz-UZ')} UZS</p>
           </div>
           <div className="leftBordered">
             <small>Total margin</small>
@@ -65,14 +100,6 @@ function Home() {
           </div>
         </div>
       </section>
-
-      <Link to="/tickets" className="btn btn-block">
-        <FaTicketAlt /> View My Tickets
-      </Link>
-
-      <Link to="/new-ticket" className="btn btn-reverse">
-        <FaQuestionCircle /> Create New Ticket
-      </Link>
     </>
   )
 }

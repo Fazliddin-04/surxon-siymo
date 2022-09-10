@@ -1,4 +1,4 @@
-import { FaSignInAlt, FaSignOutAlt, FaUser } from 'react-icons/fa'
+import { FaPlus, FaSignInAlt, FaSignOutAlt, FaUser } from 'react-icons/fa'
 import {
   FiMenu,
   FiX,
@@ -59,6 +59,9 @@ function Header() {
         </div>
         <Link to="/search">
           <FiSearch />
+        </Link>
+        <Link to="/new-cart" className='btn'>
+          <FaPlus /> New Sale
         </Link>
       </div>
       <ul>

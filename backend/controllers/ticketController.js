@@ -52,9 +52,9 @@ const getTicket = asyncHandler(async (req, res) => {
 // @route   POST /api/tickets
 // @access  PRIVATE
 const createTicket = asyncHandler(async (req, res) => {
-  const { product, description, price, size, amount } = req.body
+  const { product, description, price, size, vendorcode, barcode } = req.body
 
-  if (!product || !description || !price || !size || !amount) {
+  if (!product || !description || !price || !size || !vendorcode || !barcode) {
     res.status(400)
     throw new Error('Please fill out all fields of products')
   }
@@ -68,7 +68,7 @@ const createTicket = asyncHandler(async (req, res) => {
 
   const ticket = await Ticket.create({
     user: req.user.id,
-    product, description, price, size, amount,
+    product, description, price, size, vendorcode, barcode,
     status: 'new'
   })
 

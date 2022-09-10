@@ -1,10 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit';
 import authReducer from '../features/auth/authSlice'
-import layoutSlice from '../features/layout/layoutSlice';
+import layoutReducer from '../features/layout/layoutSlice';
+import ticketReducer from '../features/ticket/ticketSlice';
+import cartReducer from '../features/cart/cartSlice';
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
-    layout: layoutSlice,
+    tickets: ticketReducer,
+    layout: layoutReducer,
+    cart: cartReducer,
   },
 });

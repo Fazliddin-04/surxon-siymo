@@ -16,18 +16,26 @@ const ticketSchema = mongoose.Schema({
     required: [true, 'Please enter a description'],
   },
   price: {
-    type: String,
+    type: Number,
     required: [true, 'Please enter price of the product'],
+  },
+  vendorcode: {
+    type: String,
+    required: [true, 'Please enter vendor code of the product'],
+  },
+  barcode: {
+    type: String,
+    required: [true, 'Please enter barcode of the product'],
   },
   size: {
     type: String,
     required: [true, 'Please select size of the product'],
     enum: ['L', 'XL', 'XXL']
   },
-  amount: {
-    type: Number,
-    required: [true, 'Please enter amount of the product'],
-  },
+  // amount: {
+  //   type: Number,
+  //   required: [true, 'Please enter amount of the product'],
+  // },
   status: {
     type: String,
     required: true,

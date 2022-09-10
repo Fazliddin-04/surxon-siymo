@@ -85,7 +85,7 @@ function Products() {
           <div>Kategoriya</div>
           <div>O'lcham</div>
         </div>
-        {/* {[...tickets]
+        {[...tickets]
           .reverse()
           .map((ticket) =>
             searchQ !== '' ? (
@@ -101,7 +101,7 @@ function Products() {
             ) : (
               <TicketItem key={ticket._id} ticket={ticket} />
             )
-          )} */}
+          )}
       </div>
     </div>
   )

@@ -44,10 +44,7 @@ function History() {
           : cart.price -
             cart.discount -
             (cart.price - (cart.price / 100) * extra)
-      loss +=
-        cart.discountType === '%'
-          ? cart.price - (cart.price / 100) * cart.discount
-          : cart.price - cart.discount
+      loss += profit <= 0 ? cart.price - (cart.price / 100) * extra - sum : 0
     })
     setSellingPrice(sum)
     setTotalProfit(profit)
@@ -61,10 +58,10 @@ function History() {
 
   return (
     <div style={{ padding: '0px 20px' }}>
-      <h1>History</h1>
+      <h1>Tarix</h1>
       <div className="flexbox banner flex-ones">
         <div className="leftBordered">
-          <small>Total Sellings</small>
+          <small>Umumiy Xaridlar</small>
           <p>{totalHistory}</p>
         </div>
         <div className="leftBordered">
@@ -82,16 +79,16 @@ function History() {
       </div>
       <div className="tickets">
         <div className="ticket-headings">
-          <div>Product</div>
-          <div>Selled</div>
-          <div>Profit</div>
-          <div>Loss</div>
-          <div>Date</div>
+          <div>Tovar</div>
+          <div>Sotildi</div>
+          <div>Foyda</div>
+          <div>Zarar</div>
+          <div>Sana</div>
         </div>
         {carts.length !== 0 ? (
           carts.map((cart) => <CartInfoItem key={cart._id} cart={cart} />)
         ) : (
-          <h3 style={{ textAlign: 'center' }}>No products saled</h3>
+          <h3 style={{ textAlign: 'center' }}>Sotilgan tovarlar yo'q</h3>
         )}
       </div>
     </div>

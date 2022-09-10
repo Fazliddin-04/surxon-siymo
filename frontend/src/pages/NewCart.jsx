@@ -5,8 +5,9 @@ import { toast } from 'react-toastify'
 import { createCart, reset } from '../features/cart/cartSlice'
 import { getTickets, closeTicket } from '../features/ticket/ticketSlice'
 import Spinner from '../components/Spinner'
-import { FaCheck, FaPlus, FaSearch, FaTimes, FaTrash } from 'react-icons/fa'
+import { FaCheck, FaPlus, FaTimes, FaTrash } from 'react-icons/fa'
 import CartItem from '../components/CartItem'
+import { FiSearch, FiShoppingCart } from 'react-icons/fi'
 
 function NewCart() {
   const { user } = useSelector((state) => state.auth)
@@ -127,7 +128,7 @@ function NewCart() {
       >
         <div className="form-group searchBox">
           <label htmlFor="search" style={{ margin: '0 10px' }}>
-            <FaSearch size={20} />
+            <FiSearch size={20} />
           </label>
           <input
             type="text"
@@ -150,7 +151,7 @@ function NewCart() {
               fontSize: '1.2rem',
               paddingLeft: '50px',
             }}
-            placeholder="Vendor code, barcode, product"
+            placeholder="sotuvchi kodi, barkod, tovar"
           />
           <div
             className="clear"
@@ -202,7 +203,10 @@ function NewCart() {
         </div>
 
         <div ref={basket}>
-          <h1>Basket</h1>
+          <h1 className="flexbox" style={{ gap: 10 }}>
+            Xaridlar Savati
+            <FiShoppingCart />
+          </h1>
           <div className="tickets">
             {products.length !== 0 ? (
               products.map((ticket, idx) => (
@@ -218,7 +222,7 @@ function NewCart() {
                 </div>
               ))
             ) : (
-              <h3>No elements selected</h3>
+              <h3>Belgilangan tovarlar yo'q</h3>
             )}
           </div>
         </div>

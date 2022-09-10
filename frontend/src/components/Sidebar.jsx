@@ -15,47 +15,52 @@ function Sidebar() {
       </div>
       <ul>
         <li>
-          <Link to="/" className="sidebar_link">
-            <div
-              className={`btn btn-reverse little ${
-                location.pathname !== '/' ? 'inactive' : ''
-              }`}
-            >
+          <Link
+            to="/"
+            className={`sidebar_link ${
+              location.pathname !== '/' ? 'inactive' : ''
+            }
+          `}
+          >
+            <div className={`btn btn-reverse little`}>
               <FiHome />
             </div>
-            <p>Home</p>
+            <p>Bosh sahifa</p>
           </Link>
         </li>
         <li>
-          <Link to="/products" className="sidebar_link">
-            <div
-              className={`btn btn-reverse  little ${
-                location.pathname !== '/products' ? 'inactive' : ''
-              }`}
-            >
+          <Link
+            to="/products"
+            className={`sidebar_link ${
+              location.pathname !== '/products' ? 'inactive' : ''
+            }`}
+          >
+            <div className={`btn btn-reverse  little `}>
               <FiPieChart />
             </div>
-            <p>Products</p>
+            <p>Tovarlar</p>
           </Link>
-          <Link to="/history" className="sidebar_link">
-            <div
-              className={`btn btn-reverse  little ${
-                location.pathname !== '/history' ? 'inactive' : ''
-              }`}
-            >
+          <Link
+            to="/history"
+            className={`sidebar_link ${
+              location.pathname !== '/history' ? 'inactive' : ''
+            }`}
+          >
+            <div className={`btn btn-reverse  little `}>
               <FiClock />
             </div>
-            <p>History</p>
+            <p>Tarix</p>
           </Link>
-          <Link to="/settings" className="sidebar_link">
-            <div
-              className={`btn btn-reverse  little ${
-                location.pathname !== '/settings' ? 'inactive' : ''
-              }`}
-            >
+          <Link
+            to="/settings"
+            className={`sidebar_link ${
+              location.pathname !== '/settings' ? 'inactive' : ''
+            }`}
+          >
+            <div className={`btn btn-reverse little `}>
               <IoSettingsOutline />
             </div>
-            <p>Settings</p>
+            <p>Sozlamalar</p>
           </Link>
         </li>
       </ul>

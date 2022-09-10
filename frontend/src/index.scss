@@ -2,9 +2,6 @@
 
 $black: #333033;
 $darkblue: #292f37;
-$blue: #4badf7;
-$violet: #b09ff9;
-$lightGreen: #aaf8f6;
 $red: #e0534a;
 
 * {
@@ -36,7 +33,11 @@ body {
       }
     }
     .sidebar {
-      background: linear-gradient(180deg, #e6f1ff, #fafdff);
+      background: #fff;
+      border-right: 1px solid rgba(0, 0, 0, 0.3);
+      &.open {
+        background: #e6f1ff;
+      }
     }
     .dropdown {
       &-content {
@@ -54,8 +55,7 @@ body {
     }
     .leftBordered {
       color: #000;
-      background: linear-gradient(90deg, #f1f7ff 60%, #fafdff 100%);
-      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      background: #f1f7ff;
     }
   }
 }
@@ -128,7 +128,11 @@ h3 {
     margin: 20px 0;
     .btn.little {
       margin-right: 30px;
-      &.inactive {
+    }
+    &.inactive {
+      color: #a0a2a7;
+      .btn.little {
+        margin-right: 30px;
         background: transparent;
         border: 0;
         color: #a0a2a7;
@@ -196,7 +200,8 @@ h3 {
   }
   &.banner {
     justify-content: space-between;
-    margin: 20px 0;
+    gap: 30px;
+    margin-bottom: 30px;
   }
   &.flex-ones div {
     flex: 1;
@@ -205,24 +210,14 @@ h3 {
 
 .leftBordered {
   color: #fff;
-  background: linear-gradient(90deg, $black 60%, $darkblue 100%);
+  background: $black;
   padding: 15px;
   padding-right: 60px;
   min-width: 260px;
   border-radius: 8px;
   border-left: 4px solid;
-  &:nth-of-type(1) {
-    border-left-color: $blue;
-  }
-  &:nth-of-type(2) {
-    border-left-color: $lightGreen;
-  }
-  &:nth-of-type(3) {
-    border-left-color: $red;
-  }
-  &:nth-of-type(4) {
-    border-left-color: $violet;
-  }
+  border-right: 4px solid;
+  border-color: $red;
   small {
     color: #777;
     font-size: 1rem;
@@ -440,8 +435,8 @@ input:disabled {
 
 .btn-outline {
   background: transparent;
-  border: 2px solid $blue;
-  color: $blue;
+  border: 2px solid $red;
+  color: $red;
 }
 
 .btn-block {
@@ -807,7 +802,7 @@ footer {
       stroke-dasharray: 90;
       stroke-dashoffset: 100;
       animation: dash 3s ease infinite;
-      stroke: $violet;
+      stroke: $red;
     }
 
     .dash2__path_path1 {
@@ -833,7 +828,7 @@ footer {
 
     &3__path {
       animation: dash3 2s ease infinite;
-      stroke: $lightGreen;
+      stroke: $red;
     }
 
     .dash4__path {
@@ -841,7 +836,7 @@ footer {
     }
 
     &6__path {
-      stroke: $blue;
+      stroke: $red;
       stroke-width: 6px;
       stroke-linejoin: round;
       stroke-linecap: round;

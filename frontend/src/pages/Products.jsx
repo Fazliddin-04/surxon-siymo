@@ -79,25 +79,29 @@ function Products() {
       </div>
       <div className="tickets">
         <div className="ticket-headings">
-          <div>Product</div>
-          <div>Vendor Code</div>
-          <div>Barcode</div>
-          <div>Category</div>
-          <div>Size</div>
+          <div>Tovar</div>
+          <div>Sotuvchi kodi</div>
+          <div>Barkod</div>
+          <div>Kategoriya</div>
+          <div>O'lcham</div>
         </div>
-        {tickets.map((ticket) =>
-          searchQ !== '' ? (
-            ticket.description.toLowerCase().includes(searchQ.toLowerCase()) ||
-            ticket.vendorcode.toLowerCase().includes(searchQ.toLowerCase()) ||
-            ticket.barcode.includes(searchQ) ? (
-              <TicketItem key={ticket._id} ticket={ticket} q={searchQ} />
+        {/* {[...tickets]
+          .reverse()
+          .map((ticket) =>
+            searchQ !== '' ? (
+              ticket.description
+                .toLowerCase()
+                .includes(searchQ.toLowerCase()) ||
+              ticket.vendorcode.toLowerCase().includes(searchQ.toLowerCase()) ||
+              ticket.barcode.includes(searchQ) ? (
+                <TicketItem key={ticket._id} ticket={ticket} q={searchQ} />
+              ) : (
+                <></>
+              )
             ) : (
-              <></>
+              <TicketItem key={ticket._id} ticket={ticket} />
             )
-          ) : (
-            <TicketItem key={ticket._id} ticket={ticket} />
-          )
-        )}
+          )} */}
       </div>
     </div>
   )

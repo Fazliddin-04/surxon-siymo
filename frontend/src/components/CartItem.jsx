@@ -52,7 +52,7 @@ function CartItem({ ticket, q, select }) {
           </div>
         </div>
         <div style={{ justifySelf: 'flex-end' }}>
-          {ticket.price.toLocaleString('uz-UZ', { currency: 'sum' })} sum
+          {ticket.price.toLocaleString('uz-UZ')} UZS
         </div>
       </div>
     )

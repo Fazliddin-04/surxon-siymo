@@ -2,7 +2,6 @@ import { FaPlus, FaSignInAlt, FaSignOutAlt, FaUser } from 'react-icons/fa'
 import {
   FiMenu,
   FiX,
-  FiSearch,
   FiChevronDown,
   FiSun,
   FiMoon,
@@ -57,11 +56,8 @@ function Header() {
             <FiMenu />
           </div>
         </div>
-        <Link to="/search">
-          <FiSearch />
-        </Link>
         <Link to="/new-cart" className='btn'>
-          <FaPlus /> New Sale
+          <FaPlus /> Yangi Xarid
         </Link>
       </div>
       <ul>
@@ -105,7 +101,7 @@ function Header() {
             </li>
             <li>
               <Link to="/register">
-                <FaUser /> Register
+                <FaUser /> Registratsiya
               </Link>
             </li>
           </>

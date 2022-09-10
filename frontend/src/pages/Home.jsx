@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { FaRegCalendarAlt } from 'react-icons/fa'
 import { useSelector, useDispatch } from 'react-redux'
+import { getCarts } from '../features/cart/cartSlice'
 import Spinner from '../components/Spinner'
 import { getTickets, reset } from '../features/ticket/ticketSlice'
 
@@ -8,6 +9,8 @@ function Home() {
   const { tickets, isLoading, isSuccess } = useSelector(
     (state) => state.tickets
   )
+
+  const { carts, isLoading: cartsLoading } = useSelector((state) => state.cart)
 
   const [date, setDate] = useState(
     new Date().toLocaleString('en-US', {
@@ -34,13 +37,26 @@ function Home() {
   }, [dispatch])
 
   useEffect(() => {
+    dispatch(getCarts())
+  }, [dispatch])
+
+  useEffect(() => {
+    let sum = 0
+    carts.forEach((cart) => {
+      sum +=
+        cart.discountType === '%'
+          ? cart.price - (cart.price / 100) * cart.discount
+          : cart.price - cart.discount
+    })
+
     let costIncurred = 0
     tickets.forEach((ticket) => {
       costIncurred += ticket.price
     })
 
+    setSalePrice(sum)
     setTotalCostIncurred(costIncurred)
-  }, [tickets])
+  }, [carts, tickets])
 
   const onMutate = (e) => {
     setDate(
@@ -52,7 +68,7 @@ function Home() {
     )
   }
 
-  if (isLoading) {
+  if (isLoading || cartsLoading) {
     return <Spinner />
   }
 
@@ -61,7 +77,7 @@ function Home() {
       <section className="home">
         <div className="flexbox">
           <div className="form-group">
-            <label htmlFor="company">Company</label>
+            <label htmlFor="company">Filial</label>
             <select name="company" id="company">
               <option value="Shurchi restoran">Shurchi restoran</option>
               <option value="filial 1">filial 1</option>
@@ -83,19 +99,19 @@ function Home() {
         </div>
         <div className="flexbox">
           <div className="leftBordered">
-            <small>Total cost</small>
+            <small>Umumiy xarajat</small>
             <p>{totalCostIncurred.toLocaleString('uz-UZ')} UZS</p>
           </div>
           <div className="leftBordered">
-            <small>Total selling price</small>
+            <small>Umumiy pul aylanmasi</small>
             <p> {salePrice.toLocaleString('uz-UZ')} UZS</p>
           </div>
           <div className="leftBordered">
-            <small>Total margin</small>
+            <small>Do'konning ulushi</small>
             <p>38%</p>
           </div>
           <div className="leftBordered">
-            <small>Best selling product</small>
+            <small>Eng yaxshi sotilgan mahsulot</small>
             <p>iPhone 12 Pro Max</p>
           </div>
         </div>
